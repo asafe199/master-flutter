@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:master/env/enviroment.dart';
+import 'package:master/env/config/config_reader.dart';
 import 'package:master/pages/main_module.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:master/store/routes.dart';
 
 Future<void> startProject(String env) async {
   WidgetsFlutterBinding.ensureInitialized();
   await ConfigReader.initialize(env);
-  runApp(ModularApp(
+  runApp(
+    ModularApp(
       module: MainModule(),
-      child: MaterialMainApp()));
+      child: MaterialMainApp(),
+    ),
+  );
 }
 
 class MaterialMainApp extends StatelessWidget {
@@ -18,6 +21,7 @@ class MaterialMainApp extends StatelessWidget {
     return MaterialApp(
       title: 'Projeto Master',
       debugShowCheckedModeBanner: false,
+      initialRoute: Routes.HOME,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

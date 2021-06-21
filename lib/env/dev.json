@@ -1,1 +1,7 @@
-{"teste":"dev"}
+{
+  "github": {
+    "user": "https://api.github.com/users/{username}",
+    "repos": "https://api.github.com/{username}/repos",
+    "starred": "https://api.github.com/{username}/starred"
+  }
+}

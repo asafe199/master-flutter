@@ -8,10 +8,14 @@ abstract class Enviroment {
 }
 
 abstract class ConfigReader {
-  static Map<String, dynamic> env;
+  static Map<String, dynamic> _env;
 
   static Future<void> initialize(String enviroment) async {
     var jsonData = await rootBundle.loadString('lib/env/'+enviroment+'.json');
-    env = await json.decode(jsonData);
+    _env = await json.decode(jsonData);
+  }
+
+  static Map<String, dynamic> getVariablesEnv(){
+    return _env;
   }
 }
