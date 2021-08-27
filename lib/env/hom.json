@@ -1,7 +1,13 @@
 {
-  "github": {
-    "user": "https://api.github.com/users/{username}",
-    "repos": "https://api.github.com/{username}/repos",
-    "starred": "https://api.github.com/{username}/starred"
+  "user": {
+    "get": "http://localhost:3000/api/user/{id}",
+    "getAll": "http://localhost:3000/api/user",
+    "create": "http://localhost:3000/api/user",
+    "update": "http://localhost:3000/api/user/{id}",
+    "delete": "http://localhost:3000/api/user/{id}"
+  },
+  "authenticate": {
+    "login": "http://localhost:3000/api/autenticate/login",
+    "refresh": "http://localhost:3000/api/autenticate/refresh"
   }
 }

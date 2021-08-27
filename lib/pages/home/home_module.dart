@@ -1,15 +1,15 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:master/pages/home/home.dart';
 import 'package:master/pages/home/home_controller.dart';
-import 'package:master/services/impl/github_repository_impl.dart';
-import 'package:master/services/respository/github_repository.dart';
+import 'package:master/services/impl/user_repository_impl.dart';
+import 'package:master/services/respository/user_repository.dart';
 
 class HomeModule extends Module{
 
   @override
   final List<Bind> binds = [
-    Bind.singleton((i) => GitHubRepositoryImpl()),
-    Bind.singleton((i) => HomeController(i<GitHubRepository>())),
+    Bind.singleton((i) => UserRepositoryImpl()),
+    Bind.singleton((i) => HomeController(i<UserRepository>())),
   ];
 
   @override

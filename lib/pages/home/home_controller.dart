@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:master/services/respository/github_repository.dart';
+import 'package:master/services/respository/user_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'home_controller.g.dart';
@@ -8,8 +8,8 @@ class HomeController = HomeBaseController with _$HomeController;
 
 abstract class HomeBaseController with Store implements Disposable {
 
-  final GitHubRepository _gitHubRepository;
-  HomeBaseController(this._gitHubRepository);
+  final UserRepository _userRepository;
+  HomeBaseController(this._userRepository);
 
   @observable
   int cout = 0;
@@ -26,7 +26,7 @@ abstract class HomeBaseController with Store implements Disposable {
 
   @action
   Future<void> print(String user) async {
-    var userModel = await _gitHubRepository.get(user);
+    var userModel = await _userRepository.get(user);
     print(userModel.toString());
   }
 }

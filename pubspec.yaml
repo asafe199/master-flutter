@@ -52,6 +52,7 @@ flutter:
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #
+
 scripts:
   dev: flutter run lib/dev_main.dart
   dev-debug: flutter run lib/dev_main.dart --debug
