@@ -13,7 +13,8 @@ class User {
   User({this.id, this.name, this.lastName, this.email, this.phone, this.age,
       this.password, this.roles});
 
-  factory User.fromJson(Map<String, dynamic> json) {
+  factory User.fromJson(Map<String, dynamic> data) {
+    var json = data['data'];
     return User(
       id: json['id'],
       name: json["name"],

@@ -2,29 +2,29 @@ import 'package:master/env/config/config_reader.dart';
 
 class Enviroments {
 
-  static String USER = 'user';
-  static String AUTHENTICATE = 'authenticate';
+  static String _USER = 'user';
+  static String _AUTHENTICATE = 'authenticate';
   static final variablesEnv = ConfigReader.getVariablesEnv();
 
   static String getUser(id){
-    String env = variablesEnv[USER]['get'];
+    String env = variablesEnv[_USER]['get'];
     return env.replaceAll("{id}", id);
   }
 
   static String getAllUser(){
-    return variablesEnv[USER]['getAll'];
+    return variablesEnv[_USER]['getAll'];
   }
 
   static String deleteUser(id){
-    String env = variablesEnv[USER]['getAll'];
+    String env = variablesEnv[_USER]['getAll'];
     return env.replaceAll("{id}", id);
   }
 
   static String login(){
-    return variablesEnv[AUTHENTICATE]['login'];
+    return variablesEnv[_AUTHENTICATE]['login'];
   }
 
   static String refreshToken(){
-    return variablesEnv[AUTHENTICATE]['refresh'];
+    return variablesEnv[_AUTHENTICATE]['refresh'];
   }
 }
