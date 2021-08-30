@@ -10,9 +10,9 @@ class Connection {
   Map<dynamic, dynamic> data;
   String _url;
   int timeout;
-  Map<String, dynamic> _headers;
+  Map<String, dynamic> headers;
 
-  Connection(this._http, this._url, {this.data, this.timeout});
+  Connection(this._http, this._url, {this.data, this.timeout, this.headers});
 
   Future<ResponseService> exec() async {
     ResponseService service;
@@ -34,41 +34,39 @@ class Connection {
   }
 
   Future<ResponseService> _get() async {
-    final client = HttpClient();
-    client.connectionTimeout = this.timeout != null ? Duration(seconds: this.timeout) : null;
-    final http = IOClient(client);
-    var response = await http.get(Uri.parse(this._url), headers: this._headers);
+    IOClient http = _connectHttp();
+    var response = await http.get(Uri.parse(this._url), headers: this.headers);
     return returnData(response);
   }
 
   Future<ResponseService> _delete() async {
-    final client =  HttpClient();
-    client.connectionTimeout = this.timeout != null ? Duration(seconds: this.timeout) : null;
-    final http =  IOClient(client);
-    var response = await http.delete(Uri.parse(this._url), headers: this._headers);
+    IOClient http = _connectHttp();
+    var response = await http.delete(Uri.parse(this._url), headers: this.headers);
     return returnData(response);
   }
 
   Future<ResponseService> _put() async {
-    final client =  HttpClient();
-    client.connectionTimeout = this.timeout != null ? Duration(seconds: this.timeout) : null;
-    final http =  IOClient(client);
+    IOClient http = _connectHttp();
     var data = convert.json.encode(this.data);
-    var response = await http.put(Uri.parse(this._url), headers: _headers, body: data, encoding: convert.Encoding.getByName("utf-8"));
+    var response = await http.put(Uri.parse(this._url), headers: headers, body: data, encoding: convert.Encoding.getByName("utf-8"));
     return returnData(response);
   }
 
   Future<ResponseService> _post() async {
-    final client =  HttpClient();
-    client.connectionTimeout = this.timeout != null ? Duration(seconds: this.timeout) : null;
-    final http =  IOClient(client);
+    IOClient http = _connectHttp();
     var data = convert.json.encode(this.data);
-    var response = await http.post(Uri.parse(this._url), headers: this._headers, body: data, encoding: convert.Encoding.getByName("utf-8"));
+    var response = await http.post(Uri.parse(this._url), headers: this.headers, body: data, encoding: convert.Encoding.getByName("utf-8"));
     return returnData(response);
   }
 
   returnData(dynamic response){
     var jsonDecode = convert.jsonDecode(response.body);
     return ResponseService(jsonDecode, response?.headers, response?.statusCode);
+  }
+
+  IOClient _connectHttp(){
+    final client = HttpClient();
+    client.connectionTimeout = Duration(seconds: this.timeout != null ? 30 : this.timeout);
+    return IOClient(client);
   }
 }
