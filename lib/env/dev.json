@@ -1,13 +1,13 @@
 {
   "user": {
-    "get": "http://localhost:3000/api/user/{id}",
-    "getAll": "http://localhost:3000/api/user",
-    "create": "http://localhost:3000/api/user",
-    "update": "http://localhost:3000/api/user/{id}",
-    "delete": "http://localhost:3000/api/user/{id}"
+    "get": "http://10.0.2.2:3000/api/user/{id}",
+    "getAll": "http://10.0.2.2:3000/api/user",
+    "create": "http://10.0.2.2:3000/api/user",
+    "update": "http://10.0.2.2:3000/api/user/{id}",
+    "delete": "http://10.0.2.2:3000/api/user/{id}"
   },
   "authenticate": {
-    "login": "http://localhost:3000/api/autenticate/login",
-    "refresh": "http://localhost:3000/api/autenticate/refresh"
+    "login": "http://10.0.2.2:3000/api/autenticate/login",
+    "refresh": "http://10.0.2.2:3000/api/autenticate/refresh"
   }
 }
