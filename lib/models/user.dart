@@ -7,11 +7,16 @@ class User {
   String email;
   String phone;
   int age;
-  String password;
   Roles roles;
 
-  User({this.id, this.name, this.lastName, this.email, this.phone, this.age,
-      this.password, this.roles});
+  User(
+      {this.id,
+      this.name,
+      this.lastName,
+      this.email,
+      this.phone,
+      this.age,
+      this.roles});
 
   factory User.fromJson(Map<String, dynamic> data) {
     var json = data['data'];
@@ -22,7 +27,7 @@ class User {
       email: json["email"],
       phone: json["phone"],
       age: json["age"],
-      roles: json["roles"],
+      roles: RolesClass.getValue(json["roles"]),
     );
   }
 
@@ -35,9 +40,6 @@ class User {
       "phone": this.phone,
       "age": this.age,
       "roles": this.roles,
-      "password": this.password,
     };
   }
-
 }
-

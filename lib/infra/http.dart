@@ -60,7 +60,10 @@ class Connection {
   }
 
   returnData(dynamic response){
-    var jsonDecode = convert.jsonDecode(response.body);
+    var jsonDecode;
+    if(response?.body != null && response?.body != "[]" && response?.body.toString().isNotEmpty){
+      jsonDecode = convert.jsonDecode(response?.body);
+    }
     return ResponseService(jsonDecode, response?.headers, response?.statusCode);
   }
 

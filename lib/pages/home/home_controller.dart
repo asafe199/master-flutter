@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:master/models/auth_user.dart';
 import 'package:master/services/respository/auth_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -18,17 +19,6 @@ abstract class HomeBaseController with Store implements Disposable {
   var senha = TextEditingController();
   @observable
   var formKey = GlobalKey<FormState>();
-  @observable
-  var isDark = false;
-
-
-  @observable
-  int cout = 0;
-
-  @action
-  void add(){
-    cout++;
-  }
 
   @override
   void dispose() {
@@ -37,7 +27,7 @@ abstract class HomeBaseController with Store implements Disposable {
 
   @action
   Future<void> authLogin() async {
-    var userModel = await _authRepository.login(login.text.toLowerCase().trim(), senha.text.trim());
+    AuthUser userModel = await _authRepository.login(login.text.toLowerCase().trim(), senha.text.trim());
     print(userModel.toString());
   }
 }

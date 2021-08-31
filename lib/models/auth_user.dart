@@ -11,7 +11,7 @@ class AuthUser {
     return AuthUser(
       token: json['token'],
       user: User.fromJson(
-        json["user"],
+        json,
       ),
     );
   }

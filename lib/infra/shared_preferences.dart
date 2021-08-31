@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Preferences {
+class Preferences with ChangeNotifier{
+  Brightness _brightness;
+  get brightness => _brightness;
 
-  static getTheme() async {
+  getTheme() async {
     SharedPreferences _preferences = await SharedPreferences.getInstance();
-    return (_preferences.getBool("isBlack") ?? false) ? Brightness.dark : Brightness.light;
+    _brightness = (_preferences.getBool("isBlack") ?? false) ? Brightness.dark : Brightness.light;
+    notifyListeners();
   }
 
-  static setTheme(bool isDark) async {
+  setTheme(bool isDark) async {
     SharedPreferences _preferences = await SharedPreferences.getInstance();
     await _preferences.setBool("isBlack", isDark);
+    _brightness = (isDark ? Brightness.dark : Brightness.light);
+    notifyListeners();
   }
 }
